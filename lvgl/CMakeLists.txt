@@ -16,3 +16,5 @@ FetchContent_MakeAvailable(lvgl)
 target_compile_definitions(lvgl PUBLIC -DLV_CONF_PATH=${LV_CONF_PATH})
 
 add_subdirectory(interfaces)
+add_subdirectory(core)
+add_subdirectory(widgets)
