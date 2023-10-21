@@ -12,6 +12,8 @@ target_link_libraries(embedded_lvgl.widgets PUBLIC
 )
 
 target_sources(embedded_lvgl.widgets PRIVATE
+    Label.cpp
+    Label.hpp
     Led.cpp
     Led.hpp
 )

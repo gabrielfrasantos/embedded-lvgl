@@ -17,6 +17,8 @@ target_sources(embedded_lvgl.core PRIVATE
     Object.hpp
     Position.cpp
     Position.hpp
+    Screen.cpp
+    Screen.hpp
     Scroll.cpp
     Scroll.hpp
 )
