@@ -10,6 +10,10 @@ namespace embedded::lvgl::core
         : color(color)
     {}
 
+    Color::Color(Rgb color)
+        : color(static_cast<uint32_t>(color))
+    {}
+
     Color::Color()
         : color(0)
     {}

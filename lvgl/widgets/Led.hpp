@@ -13,7 +13,8 @@ namespace embedded::lvgl::widget
     using namespace embedded::lvgl::core;
 
     class Led
-        : public Position
+        : public Object
+        , public Position
         , public Scroll
     {
     public:

@@ -14,6 +14,16 @@ if (EMBEDDED_LVGL_STANDALONE)
     )
 
     FetchContent_MakeAvailable(emil)
+
+    if (TARGET_MCU_VENDOR STREQUAL ti)
+        FetchContent_Declare(
+            halst
+            GIT_REPOSITORY https://github.com/gabrielfrasantos/embedded-hal-ti
+            GIT_TAG        ba279cc0cb201f1b4ce1082c0215fa3880883c87 # unreleased
+        )
+
+        FetchContent_MakeAvailable(halst)
+    endif()
 endif()
 
 option(CMAKE_COMPILE_WARNING_AS_ERROR "Enable warnings-as-error" ON)

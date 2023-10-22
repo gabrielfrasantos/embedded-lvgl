@@ -11,6 +11,7 @@ namespace embedded::lvgl::widget
         c.full = color.Full();
 
         led = lv_led_create(&parent.Parent());
+        embedded::lvgl::core::Object::SetObject(*led);
         embedded::lvgl::core::Position::SetObject(*led);
         embedded::lvgl::core::Scroll::SetObject(*led);
         lv_led_set_color(led, c);

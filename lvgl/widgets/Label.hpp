@@ -1,5 +1,5 @@
-#ifndef EMBEDDED_LVGL_WIDGET_LED_HPP
-#define EMBEDDED_LVGL_WIDGET_LED_HPP
+#ifndef EMBEDDED_LVGL_WIDGET_LABEL_HPP
+#define EMBEDDED_LVGL_WIDGET_LABEL_HPP
 
 #include "lvgl.h"
 #include "lvgl/core/Color.hpp"
@@ -14,7 +14,8 @@ namespace embedded::lvgl::widget
     using namespace embedded::lvgl::core;
 
     class Label
-        : public Position
+        : public Object
+        , public Position
         , public Scroll
     {
     public:
@@ -27,8 +28,8 @@ namespace embedded::lvgl::widget
             clip = LV_LABEL_LONG_CLIP, /**< Keep the size and clip the text out of it*/
         };
 
-        explicit Label(Object& parent, infra::BoundedString& text, Mode mode = Mode::wrap);
-        virtual ~Label();
+        explicit Label(Object& parent, infra::BoundedConstString text, Mode mode = Mode::wrap);
+        ~Label() override;
 
     private:
         Object& parent;
