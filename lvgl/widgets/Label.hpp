@@ -2,7 +2,6 @@
 #define EMBEDDED_LVGL_WIDGET_LABEL_HPP
 
 #include "lvgl.h"
-#include "lvgl/core/Color.hpp"
 #include "lvgl/core/Object.hpp"
 #include "lvgl/core/Position.hpp"
 #include "lvgl/core/Scroll.hpp"

@@ -3,12 +3,12 @@
 
 namespace embedded::lvgl::widget
 {
-    Led::Led(Object& parent, const Color& color)
+    Led::Led(Object& parent, const hal::Color& color)
         : parent(parent)
     {
         lv_color_t c;
 
-        c.full = color.Full();
+        c.full = color.Combination();
 
         led = lv_led_create(&parent.Parent());
         embedded::lvgl::core::Object::SetObject(*led);

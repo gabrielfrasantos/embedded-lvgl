@@ -54,8 +54,11 @@ else()
     set(EMBEDDED_LVGL_EXCLUDE_FROM_ALL "EXCLUDE_FROM_ALL")
 endif()
 
-add_subdirectory(examples)
 add_subdirectory(lvgl)
+
+if (EMBEDDED_LVGL_STANDALONE)
+    add_subdirectory(examples)
+endif()
 
 emil_clangformat_directories(lvgl DIRECTORIES .)
 

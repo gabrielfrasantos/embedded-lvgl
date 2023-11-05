@@ -4,6 +4,7 @@
 #include "lvgl/widgets/Button.hpp"
 #include "lvgl/widgets/Led.hpp"
 #include "lvgl/widgets/Label.hpp"
+#include "hal/interfaces/DisplayLcd.hpp"
 
 int main()
 {
@@ -11,9 +12,9 @@ int main()
     using namespace embedded::lvgl::widget;
 
     static Screen screen;
-    static Color red(Color::Rgb::red);
-    static Color blue(Color::Rgb::blue);
-    static Color green(Color::Rgb::green);
+    static hal::Color red(hal::Color::Rgb::red);
+    static hal::Color blue(hal::Color::Rgb::blue);
+    static hal::Color green(hal::Color::Rgb::green);
 
     static Led led1(screen, red);
     static Led led2(screen, blue);

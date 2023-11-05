@@ -2,23 +2,22 @@
 #define EMBEDDED_LVGL_WIDGET_LED_HPP
 
 #include "lvgl.h"
-#include "lvgl/core/Color.hpp"
+#include "hal/interfaces/DisplayLcd.hpp"
 #include "lvgl/core/Object.hpp"
 #include "lvgl/core/Position.hpp"
 #include "lvgl/core/Scroll.hpp"
 #include <cstdint>
 
+
 namespace embedded::lvgl::widget
 {
-    using namespace embedded::lvgl::core;
-
     class Led
-        : public Object
-        , public Position
-        , public Scroll
+        : public core::Object
+        , public core::Position
+        , public core::Scroll
     {
     public:
-        explicit Led(Object& parent, const Color& color);
+        explicit Led(core::Object& parent, const hal::Color& color);
         virtual ~Led();
 
         void On();

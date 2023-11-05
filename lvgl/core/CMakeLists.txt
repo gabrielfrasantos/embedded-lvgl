@@ -11,8 +11,6 @@ target_link_libraries(embedded_lvgl.core PUBLIC
 )
 
 target_sources(embedded_lvgl.core PRIVATE
-    Color.cpp
-    Color.hpp
     Event.hpp
     Event.cpp
     Object.cpp
