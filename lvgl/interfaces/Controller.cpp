@@ -41,7 +41,10 @@ namespace embedded::lvgl
 
     void Controller::DisplayInitialization()
     {
-        really_assert(display.GetBuffer1().size() == display.GetBuffer2().size() && display.GetBuffer2().size() % display.PixelSize() == 0);
+        really_assert(display.GetBuffer1().size() % display.PixelSize() == 0);
+
+        if (!display.GetBuffer2().empty())
+            really_assert(display.GetBuffer1().size() == display.GetBuffer2().size());
 
         lv_disp_draw_buf_init(&lvglDrawBuffers, display.GetBuffer1().begin(), display.GetBuffer2().begin(), display.GetBuffer1().size() / display.PixelSize());
         lv_disp_drv_init(&lvglDisplayDescriptor);
@@ -82,8 +85,9 @@ namespace embedded::lvgl
     void Controller::StaticLvglFlush(struct _lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
     {
         auto driver = reinterpret_cast<DriverDisplay*>(disp_drv->user_data);
+        auto size = (area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1);
 
-        driver->Flush(*area, color_p, [&disp_drv]()
+        driver->Flush(*area, infra::MemoryRange<Color>(color_p, color_p + size), [&disp_drv]()
             {
                 lv_disp_flush_ready(disp_drv);
             });

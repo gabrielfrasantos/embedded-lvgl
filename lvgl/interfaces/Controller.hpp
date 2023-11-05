@@ -5,6 +5,7 @@
 #include "infra/util/Function.hpp"
 #include "infra/util/BoundedVector.hpp"
 #include "infra/timer/Timer.hpp"
+#include "infra/util/MemoryRange.hpp"
 #include "infra/util/Variant.hpp"
 #include "lvgl.h"
 #include <sys/_stdint.h>
@@ -28,14 +29,14 @@ namespace embedded::lvgl
         virtual std::size_t GetHorizontalResolution() = 0;
         virtual std::size_t GetVerticalResolution() = 0;
 
-        virtual infra::BoundedVector<Color>& GetBuffer1() = 0;
-        virtual infra::BoundedVector<Color>& GetBuffer2() = 0;
+        virtual infra::MemoryRange<Color> GetBuffer1() = 0;
+        virtual infra::MemoryRange<Color> GetBuffer2() = 0;
         virtual std::size_t PixelSize() = 0;
 
-        virtual void Flush(Area area, Color* color, const infra::Function<void()>& onDone) = 0;
-        virtual void SetPixel(infra::ConstByteRange buffer, std::size_t width, Point point, Color color, uint8_t opa) = 0;
-        virtual void Clear(infra::ConstByteRange buffer) = 0;
-        virtual void CleanDCache() = 0;
+        virtual void Flush(Area area, infra::MemoryRange<Color> color, const infra::Function<void()>& onDone) = 0;
+        virtual void SetPixel(infra::ConstByteRange buffer, std::size_t width, Point point, Color color, uint8_t opa) {};
+        virtual void Clear(infra::ConstByteRange buffer) {};
+        virtual void CleanDCache() {};
     };
 
     class DriverGpu
