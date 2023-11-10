@@ -21,7 +21,7 @@ namespace embedded::lvgl
         tick.Start(std::chrono::milliseconds(1), []()
             {
                 lv_tick_inc(1);
-                lv_timer_handler();
+                lv_timer_handler_run_in_period(5);
             });
     }
 
@@ -53,11 +53,14 @@ namespace embedded::lvgl
 
         lvglDisplayDescriptor.hor_res = static_cast<lv_coord_t>(display.GetHorizontalResolution());
         lvglDisplayDescriptor.ver_res = static_cast<lv_coord_t>(display.GetVerticalResolution());
-
+        lvglDisplayDescriptor.draw_buf = &lvglDrawBuffers;
         lvglDisplayDescriptor.flush_cb = &StaticLvglFlush;
+
+#if 0
         lvglDisplayDescriptor.set_px_cb = &StaticLvglSetPixel;
         lvglDisplayDescriptor.clear_cb = &StaticLvglClear;
         lvglDisplayDescriptor.clean_dcache_cb = &StaticLvglCleanDCache;
+#endif
 
 #if 0 // If GPU is supported...
         lvglDisplayDescriptor.draw_ctx_init = &StaticLvglDrawInit;
@@ -65,7 +68,6 @@ namespace embedded::lvgl
 #endif
 
         lvglDisplay = lv_disp_drv_register(&lvglDisplayDescriptor);
-        lv_disp_set_default(lvglDisplay);
     }
 
     void Controller::InputDeviceInitialization()
@@ -130,6 +132,7 @@ namespace embedded::lvgl
 
     void Controller::StaticLvglRead(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
     {
+#if 0
         auto driver = reinterpret_cast<DriverInputDevice*>(indev_drv->user_data);
         really_assert(driver->Type() != DriverInputDevice::InputType::none);
 
@@ -149,6 +152,7 @@ namespace embedded::lvgl
             data->key = response.action.Get<Keypad>();
         else if (driver->Type() == DriverInputDevice::InputType::encoder)
             data->enc_diff = response.action.Get<Encoder>();
+#endif
     }
 
     void Controller::StaticLvglFeedback(struct _lv_indev_drv_t * indev_drv, uint8_t)

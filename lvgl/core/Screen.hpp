@@ -11,6 +11,7 @@ namespace embedded::lvgl::core
         , public Object
     {
     public:
+        Screen();
         virtual ~Screen() = default;
 
         void Load(Object::ParentObject&) const;

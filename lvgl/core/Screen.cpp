@@ -2,6 +2,11 @@
 
 namespace embedded::lvgl::core
 {
+    Screen::Screen()
+    {
+        this->SetObject(*lv_scr_act());
+    }
+
     void Screen::Load(Object::ParentObject& screen) const
     {
         lv_scr_load(&screen);
